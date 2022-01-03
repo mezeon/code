@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            background-color: #666;
+        }
+
+        main {
+            width: max-content;
+            margin: 0 auto 0 auto;
+        }
+
+        textarea {
+            float: left;
+            height: 200px;
+            width: 460px;
+            font-size: 20px;
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+        }
+    </style>
+    <title>Kod :))</title>
+</head>
+<body>
+    <main>
+        <form>
+            <textarea placeholder="Tutaj normalny tekst" id="txtar1"></textarea>
+            <textarea placeholder="Tutaj zakodowany tekst" id="txtar2"></textarea>
+        </form>
+    </main>
+    <script>
+        const txtar1 = document.getElementById('txtar1');
+        const txtar2 = document.getElementById('txtar2');
+        const symbols = '\n aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźżAĄBCĆDEĘFGHIJKLŁMNŃOUPQRSŚTUVWXYZŹŻ`1234567890-=[]\\;\',./~!@#$%^&*()_+{}|:"<>?áéíúñü¿Ó';
+        const codedSymbols = ['\n', ' ', 'f', 'S', 'ż', '<', 'Ć', ',', 'J', 'E', 'A', 'P', '4', 'T', '3', 'o', '-', 'Q', 'h', 's', 'ą', '8', 'L', 'n', '}', 'q', 'a', '>', 'D', 'Z', 'ń', 'ę', '\\', 'b', 'X', 'Y', 'ó', 'F', '~', '&', 'd', 'ł', 'K', 'U', 'Ż', 'v', 't', '%', 'ś', '_', 'G', 'k', 'R', 'N', '|', 'Ę', 'V', ')', '+', 'y', '?','*', '9', '{', 'w', 'e', '#', '1', '7', 'Ź', '.', 'g', 'Ś', 'ź', '/', '=', 'j', 'i', '$', 'W', 'B', "'", '@', '`', ':', 'l', 'O', 'C', '!', 'U', 'c', '6', 'ć', '0', 'r', '"', ']', '^', '(', 'u', 'p', 'z', 'm', ';', 'Ą', 'M', '[', '2', 'H', 'Ń', '5', 'x', 'Ł', 'I', 'ü', 'í', 'é', 'á', 'ú', '¿','ñ', 'Ó'];
+        let code = '';
+
+        txtar1.addEventListener('input', () => {
+            for (i = 0; i < txtar1.value.length; i++) {
+                code += codedSymbols[symbols.indexOf(txtar1.value[i])];
+            }
+            txtar2.value = code;
+            code = '';
+        });
+
+        txtar2.addEventListener('input', () => {
+            for (i = 0; i < txtar2.value.length; i++) {
+                code += symbols[codedSymbols.indexOf(txtar2.value[i])];
+            }
+            txtar1.value = code;
+            code = '';
+        });
+    </script>
+</body>
+</html>
